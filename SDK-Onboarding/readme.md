@@ -200,3 +200,6 @@ We can run tests in 2 modes: live and recorded modes. By default, tests run in r
 
 
 ## Ramp-up tasks
+Try to re-create these SDKs on your own
+- Document Translator
+- CLU
