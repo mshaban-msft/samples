@@ -7,12 +7,13 @@ This document gives you detailed explanation on how to develop SDKs for Azure se
 SDK development typically goes through the following stages
 - [Service Release](#service-release)
 - [Understanding the Service](#understanding-the-service)
-- [Design Phase (LLC or conveniece layer)](#design-phase)
+- [Development workflow](#development-workflow)
+- [Design Phase (LLC or Conveniece Layer)](#design-phase)
 - [Client generation](#client-generation)
-- Samples
-- Testing
-- Final touches
-    - Updating main readme, samples readme, release changelog
+- [Samples](#samples)
+- [Testing](#testing)
+- [Final touches](#final-touches)
+- [SDK release](#sdk-release)
 - User studies
 
 ### Resources
@@ -36,8 +37,6 @@ There are practices for preview and GA swagger releases on [azure-rest-api-specs
 
 One of the issues the CI has at the moment, is that there might be discrepancies between the actual service APIs and the published swagger. The team is currently working on some validations to make sure that never happens.
 
-
-
 ## Understanding the Service
 
 At this stage, we try to familiarize ourselves with the service swagger and APIs. We usually meet with someone from the service team. They explain how the service works, walk us through newly added features, breaking changes, and provide postman collection we can use for experimenting with the service.
@@ -45,6 +44,14 @@ At this stage, we try to familiarize ourselves with the service swagger and APIs
 We then start experimenting with the APIs using postman, making sure we fully understand the Ins and Outs od the service.
 
 Usually the service should be stable, having already been tested by the service team through multiple bug bashes.
+
+## Development workflow
+Like many open-source projects, development workflow goes as follows
+- Fork the SDK repo for the language you're developing for (look at [resources](#resources) for more info)
+- Clone your repo locally
+- Creat a feature branch (in your repository)
+- Develop SDK and commit changes
+- Create a PR from your branch in your repo to Azure SDK main branch
 
 ## Design Phase
 At this stage, we decide on how we should proceed with SDK design. we have 2 options to go with
@@ -92,13 +99,37 @@ Read articles [here](https://github.com/Azure/autorest/blob/main/docs/generate/d
 In order to further customize your client, you can actually override generated code using special _patch file.
 Read article [here](https://github.com/Azure/autorest.python/blob/autorestv3/docs/customizations.md).  
 
-## Testing
-At this stage, we write tests to make sure our client and methods are working perfectly. 
+## Samples
+At this stage, we write samples to showcase how to use the SDK.
+For preview releases, we mainly write samples for hero-scenarios.
+You need to provide sync and async samples.
+You also need to provide a readme file explaining all your samples.
+And you need to make sure everything runs without errors, otherwise, the CI pipeline won't pass on your PR.
 
-### secrets management. (tests.yml file)
+## Testing
+At this stage, we write tests to make sure our client and methods are working correctly. Also, theses tests 
+
+### Secrets management. (tests.yml file)
+### Secrets management. (tests.yml file)
 we can run tests in 2 modes: live and recorded modes.
 In live mode, you actually make calls to api endpoint. But in recorded mode, python simply mock network traffic.
 We have recorded mode because when submitting a PR or pushing new changes, CI/CD pipeline will only run tests in recorded mode.
+
+## Final Touches
+At this stage, you need to privde final touches
+
+### Changelog.md
+Update changelog.md file to add entry for the currnt release
+with things like version, date, new features, and breaking changes (if any).
+
+### Readme.md
+This will be the entrypoint for all developers looking for your SDK. You should add things like an overview of what the service does and some samples.
+
+## SDK Release
+At this stage we trigger release pipeline on Azure DevOps to release a package for users (pip package for python, or nuget package for .net).
+
+Check with senior people from SDK team (because you most likely won't have permissions to carry out this step).
+
 
 ## Resources
 
