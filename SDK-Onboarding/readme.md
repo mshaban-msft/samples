@@ -107,13 +107,24 @@ You also need to provide a readme file explaining all your samples.
 And you need to make sure everything runs without errors, otherwise, the CI pipeline won't pass on your PR.
 
 ## Testing
-At this stage, we write tests to make sure our client and methods are working correctly. Also, theses tests 
+At this stage, we write tests to make sure our client and methods are working correctly. They are mainly E2E tests, calling client methods and checking for valid response and data. 
 
-### Secrets management. (tests.yml file)
-### Secrets management. (tests.yml file)
-we can run tests in 2 modes: live and recorded modes.
-In live mode, you actually make calls to api endpoint. But in recorded mode, python simply mock network traffic.
-We have recorded mode because when submitting a PR or pushing new changes, CI/CD pipeline will only run tests in recorded mode.
+### Testing Mode
+You can run tests in 2 modes: live and recorded.
+In live mode, your client actually makes calls to the service endpoints. But in recorded mode, the dev env simply mocks network traffic.
+
+Simply, we have recorded mode because when submitting a PR or pushing new changes, CI/CD pipeline will only run tests in recorded mode to reduce network traffic. But it also has nightly builds which run tests in live mode. 
+
+### Recording Tests
+When writing tests, you need to modify local environment to run tests in live mode, and after doing this, you'll see recoded tests as many file.yml added containing network info for each call. At this point, you can run tests in recoded mode.
+
+Please check your language-specific section for how to enable each.  
+
+## CI/CD Pipeline
+
+### Secrets management.
+tests.yml file contains info about env you need to
+
 
 ## Final Touches
 At this stage, you need to privde final touches
