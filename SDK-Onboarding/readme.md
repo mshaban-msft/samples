@@ -9,7 +9,7 @@ SDK development typically goes through the following stages
 - [Understanding the Service](#understanding-the-service)
 - [Development workflow](#development-workflow)
 - [Design Phase (LLC or Conveniece Layer)](#design-phase)
-- [Client generation](#client-generation)
+- [Client generation](#client-generation) (SUPER IMPORTANT!)
 - [Samples](#samples)
 - [Testing](#testing)
 - [Final touches](#final-touches)
@@ -113,17 +113,20 @@ At this stage, we write tests to make sure our client and methods are working co
 You can run tests in 2 modes: live and recorded.
 In live mode, your client actually makes calls to the service endpoints. But in recorded mode, the dev env simply mocks network traffic.
 
-Simply, we have recorded mode because when submitting a PR or pushing new changes, CI/CD pipeline will only run tests in recorded mode to reduce network traffic. But it also has nightly builds which run tests in live mode. 
-
 ### Recording Tests
 When writing tests, you need to modify local environment to run tests in live mode, and after doing this, you'll see recoded tests as many file.yml added containing network info for each call. At this point, you can run tests in recoded mode.
 
-Please check your language-specific section for how to enable each.  
+Please check your [language-specific section](#language-specific-instructions-1) for how to enable each.  
 
 ## CI/CD Pipeline
 
-### Secrets management.
-tests.yml file contains info about env you need to
+### Testing pipeline
+We simply have recorded mode because when submitting a PR or pushing new changes, CI/CD pipeline will only run tests in recorded mode to reduce network traffic. But it also has nightly builds which run tests in live mode. 
+
+### Secrets management
+Every project has a tests.yml file which contains info you need for testing like env variables names used by pipeline.
+These secrets should point to some secret in Azure Keyvault.
+Contact your senior colleague from SDK team for more info.
 
 
 ## Final Touches
