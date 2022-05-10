@@ -24,6 +24,7 @@ SDK development typically goes through the following stages
 
 ### Language-specific Instructions
 - [Python-specific instructions](#python-specific-instructions)
+- [.NET-specific instructions](#net-specific-instructions)
 
 
 
@@ -198,7 +199,7 @@ We can run tests in 2 modes: live and recorded modes. By default, tests run in r
 - file-content: "live-mode: true"
 ```
 
-### Dotnet-specific Instructions
+### .NET-specific Instructions
 
 #### Client generation commands
 When developing an sdk in [Azure/azure-sdk-for-net](https://github.com/Azure/azure-sdk-for-net) repository, you may generate a client using the following command:
