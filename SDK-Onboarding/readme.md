@@ -119,16 +119,6 @@ When writing tests, you need to modify local environment to run tests in live mo
 
 Please check your [language-specific section](#language-specific-instructions-1) for how to enable each.  
 
-## CI/CD Pipeline
-
-### Testing pipeline
-We simply have recorded mode because when submitting a PR or pushing new changes, CI/CD pipeline will only run tests in recorded mode to reduce network traffic. But it also has nightly builds which run tests in live mode. 
-
-### Secrets management
-Every project has a tests.yml file which contains info you need for testing like env variables names used by pipeline.
-These secrets should point to some secret in Azure Keyvault.
-Contact your senior colleague from SDK team for more info.
-
 
 ## Final Touches
 At this stage, you need to privde final touches
@@ -144,6 +134,16 @@ This will be the entrypoint for all developers looking for your SDK. You should 
 At this stage we trigger release pipeline on Azure DevOps to release a package for users (pip package for python, or nuget package for .net).
 
 Check with senior people from SDK team (because you most likely won't have permissions to carry out this step).
+
+## CI/CD Pipeline
+
+### Testing pipeline
+We simply have recorded mode because when submitting a PR or pushing new changes, CI/CD pipeline will only run tests in recorded mode to reduce network traffic. But it also has nightly builds which run tests in live mode. 
+
+### Secrets management
+Every project has a tests.yml file which contains info you need for testing like env variables names used by pipeline.
+These secrets should point to some secret in Azure Keyvault.
+Contact your senior colleague from SDK team for more info.
 
 
 ## Resources
