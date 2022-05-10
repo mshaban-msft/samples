@@ -198,6 +198,43 @@ We can run tests in 2 modes: live and recorded modes. By default, tests run in r
 - file-content: "live-mode: true"
 ```
 
+### Dotnet-specific Instructions
+
+#### Client generation commands
+When developing an sdk in [Azure/azure-sdk-for-net](https://github.com/Azure/azure-sdk-for-net) repository, you may generate a client using the following command:
+
+```bash
+dotnet build {path to sdk source folder} /t:GenerateCode
+```
+
+For example, to generate the document translation sdk, the command would be:
+
+```bash
+dotnet build sdk\translation\Azure.AI.Translation.Document\src /t:GenerateCode
+```
+
+The specified path points towards the 'src' folder containing the `autorest.md` file, which specifies the swagger and settings to be used when running Autorest to generate the client. [Here](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/translation/Azure.AI.Translation.Document/src/autorest.md) is the autorest.md file used to generate the Document Translation SDK for reference.
+
+#### CSharp Autorest specifics
+
+[This documentation](https://github.com/chamons/autorest.csharp) contains instructions as well as sample code on how to perform changes to generated code using custom models. Sections that might come in handy might include:
+
+- [Rename a model property](https://github.com/chamons/autorest.csharp#rename-a-model-property)
+- [Change a model namespace](https://github.com/chamons/autorest.csharp#change-a-model-namespace)
+- [Rename a model class](https://github.com/chamons/autorest.csharp#rename-a-model-class)
+
+#### Running Tests
+
+For dotnet sdks, you can simply run tests by opening the respective solution in  Visual Studio and using the integrated test runner. The test running mode (Playback, Record, or Live) can be specified in the environment variable `AZURE_TEST_MODE`, or can be changed in the code directly.
+
+#### Scripts
+
+The `azure-sdk-for-net` repo contains a directory for scripts under [eng/scripts](https://github.com/Azure/azure-sdk-for-net/tree/main/eng/scripts). This contains some scripts that you might need to run when creating/editing an SDK. Some of the main ones are:
+
+- `Export-API.ps1`: Generates the netstandards file which declares the APIs of the SDK. Any changes to an SDK's APIs will require re-running this script.
+- `Update-Snippets.ps1` : Updates snippets in sample markdowns to match the respective marked "snippet" sections in the source sample code.
+- `CodeChecks`: Runs code checks that run in the CI pipeline locally. Useful for a sanity check when creating new commits/PRs.
+
 
 ## Ramp-up tasks
 Try to re-create these SDKs on your own
